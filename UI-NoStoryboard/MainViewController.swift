@@ -8,23 +8,56 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    
+    var textLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        view.backgroundColor = .cyan
+        configureUI()
+        
+    }
+    
+    func configureUI() {
+        
+        view.backgroundColor = .white
+        
+        let safeArea = view.layoutMarginsGuide
+        
+        textLabel = UILabel()
+        textLabel.text = "Hi, There!"
+        
+        view.addSubview(textLabel)
+        
+        
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        textLabel.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 100).isActive = true
+        textLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 10).isActive = true
+        
+        
+        let button = UIButton()
+        button.setTitle("Answer", for: .normal)
+        
+        view.addSubview(button)
+        
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor).isActive = true
+        button.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor).isActive = true
+        
+        button.setTitleColor(.darkGray, for: .normal)
+        
+        
+        button.addTarget(self, action: #selector(answerAction), for: .touchUpInside)
+        
+    }
+    
+    
+    @objc func answerAction() {
+        textLabel.text = "Hey there!,  My name is Carrington.."
     }
     
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
